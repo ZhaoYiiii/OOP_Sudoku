@@ -17,9 +17,11 @@ public class SudokuMain extends JFrame {
 
       cp.add(board, BorderLayout.CENTER);
 
-      // Add a button to the south to re-start the game
-      // ......
-//....
+      // Add a button to the south to re-start the game 
+      cp.add(btnNewGame, BorderLayout.SOUTH);
+      RestartBtnListener restartListener = new RestartBtnListener();
+      btnNewGame.addActionListener(restartListener);
+      
       board.init();
       pack();     // Pack the UI components, instead of setSize()
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
@@ -31,5 +33,12 @@ public class SudokuMain extends JFrame {
    public static void main(String[] args) {
       // [TODO 1] Check Swing program template on how to run the constructor
       SudokuMain sudoku = new SudokuMain();
+   }
+   
+   private class RestartBtnListener implements ActionListener{
+	   @Override
+	   public void actionPerformed(ActionEvent e) {
+		   SudokuMain sudoku = new SudokuMain(); //need to find a way to reset board
+	   }
    }
 }
