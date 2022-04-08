@@ -33,7 +33,16 @@ public class GameBoard extends JPanel {
 
       // [TODO 3] Allocate a common listener as the ActionEvent listener for all the
       //  Cells (JTextFields)
+      CellInputListener listener = new CellInputListener();
+      
       // [TODO 4] Every editable cell adds this common listener
+      for (int row = 0; row < GRID_SIZE; ++row) {
+    	   for (int col = 0; col < GRID_SIZE; ++col) {
+    	      if (cells[row][col].isEditable()) {
+    	         cells[row][col].addActionListener(listener);   // For all editable rows and cols
+    	      }
+    	   }
+    	}
 
       super.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
    }
@@ -71,7 +80,7 @@ public class GameBoard extends JPanel {
    }
 
    // [TODO 2] Define a Listener Inner Class
-   // private class CellInputListener implements ActionListener {
+   private class CellInputListener implements ActionListener {
    @Override
    public void actionPerformed(ActionEvent e) {
       // Get a reference of the JTextField that triggers this action event
@@ -99,7 +108,8 @@ public class GameBoard extends JPanel {
        * [TODO 6][Later] Check if the player has solved the puzzle after this move,
        *   by call isSolved(). Put up a congratulation JOptionPane, if so.
        */
-       //JOptionPane.showMessageDialog(null, "Congratulation!");
+       if(isSolved())
+       JOptionPane.showMessageDialog(null, "Congratulation!");
    }
 }
 }
