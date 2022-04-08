@@ -19,9 +19,8 @@ public class SudokuMain extends JFrame {
 
       // Add a button to the south to re-start the game
       // ......
-
+//....
       board.init();
-
       pack();     // Pack the UI components, instead of setSize()
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
       setTitle("Sudoku");
