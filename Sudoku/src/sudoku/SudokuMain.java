@@ -216,13 +216,7 @@ public class SudokuMain extends JFrame {
 	private class ResetBtnListener implements ActionListener{ //need to implement
 		@Override
 		public void actionPerformed(ActionEvent e) { //Reset
-			for(int row = 0; row < 9; row++) {
-				for(int col = 0; col < 9; col++) {
-					Cell sourceCell = (Cell)e.getSource();
-
-				}
-			}
-
+			board.clearInputs();
 		}
 	}
 	

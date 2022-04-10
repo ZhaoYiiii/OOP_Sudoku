@@ -94,6 +94,18 @@ public class GameBoard extends JPanel {
 	public void setSudokuMain(SudokuMain main) {
 		this.sudoku = main;
 	}
+	
+	public void clearInputs() {
+		for (int row = 0; row < GRID_SIZE; ++row) {
+			for (int col = 0; col < GRID_SIZE; ++col) {
+				if (cells[row][col].isEditable()) {
+					cells[row][col].setText("");   
+					cells[row][col].status = CellStatus.NO_GUESS;
+					cells[row][col].paint();
+				}
+			}
+		}
+	}
 
 	/**
 	 * Initialize the puzzle number, status, background/foreground color,
