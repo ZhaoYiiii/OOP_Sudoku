@@ -91,6 +91,14 @@ public class SudokuMain extends JFrame {
 				KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		newGame.getAccessibleContext().setAccessibleDescription(
 				"This doesn't really do anything");
+		newGame.addActionListener(new ActionListener() {
+			@Override
+			 public void actionPerformed(ActionEvent e){
+				CloseFrame();
+				SudokuMain sudoku = new SudokuMain();
+				sudoku.setJMenuBar(sudoku.Menu());
+	            }
+		});
 		file.add(newGame);
 		
 		JMenuItem exit = new JMenuItem("Exit",
@@ -99,6 +107,12 @@ public class SudokuMain extends JFrame {
 				KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		exit.getAccessibleContext().setAccessibleDescription(
 				"This doesn't really do anything");
+		exit.addActionListener(new ActionListener() {
+			@Override
+			 public void actionPerformed(ActionEvent e){
+				CloseFrame();
+	            }
+		});
 		file.add(exit);
 		
 		return menuBar;
@@ -120,7 +134,8 @@ public class SudokuMain extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) { //New Game
 			CloseFrame();
-		    new SudokuMain();
+			SudokuMain sudoku = new SudokuMain();
+			sudoku.setJMenuBar(sudoku.Menu());
 		}
 	}
 
