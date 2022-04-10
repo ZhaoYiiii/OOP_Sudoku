@@ -20,6 +20,7 @@ public class SudokuMain extends JFrame {
 	private final ClockListener cl = new ClockListener();
 	private final Timer t = new Timer(1000, cl);
 	private final JTextField tf = new JTextField(8);
+	private static String time;
 	GridBagConstraints gbc = new GridBagConstraints();
 	
 	
@@ -144,6 +145,7 @@ public class SudokuMain extends JFrame {
 		
 	    tf.setEditable(false);
 	    upTimer.add(tf);
+  
 	   // final JToggleButton b = new JToggleButton(stop);
 	    //b.addItemListener(new ItemListener() {
 
@@ -160,6 +162,10 @@ public class SudokuMain extends JFrame {
 	   // });
 	   // upTimer.add(b);
 		return upTimer;
+	}
+	
+	public String getTF() {
+		return time;
 	}
 	
 	public void start() {
@@ -211,32 +217,38 @@ public class SudokuMain extends JFrame {
 	
 	private class ClockListener implements ActionListener {
 
-	    private int hours;
-	    private int minutes;
-	    private int seconds;
-	    private String hour;
-	    private String minute;
-	    private String second;
+		private int hours;
+		private int minutes;
+		private int seconds;
+		private String hour;
+		private String minute;
+		private String second;
 
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-	        NumberFormat formatter = new DecimalFormat("00");
-	        if (seconds == N) {
-	            seconds = 00;
-	            minutes++;
-	        }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			NumberFormat formatter = new DecimalFormat("00");
+			if(board.isSolved()){
+				t.stop();
+			}
+			if (seconds == N) {
+				seconds = 00;
+				minutes++;
+			}
 
-	        if (minutes == N) {
-	            minutes = 00;
-	            hours++;
-	        }
-	        hour = formatter.format(hours);
-	        minute = formatter.format(minutes);
-	        second = formatter.format(seconds);
-	        tf.setText(String.valueOf(hour + ":" + minute + ":" + second));
-	        seconds++;
-	    }
+			if (minutes == N) {
+				minutes = 00;
+				hours++;
+			}
+			hour = formatter.format(hours);
+			minute = formatter.format(minutes);
+			second = formatter.format(seconds);
+			time = String.valueOf(hour + ":" + minute + ":" + second);
+			tf.setText(time);
+			seconds++;
+		}
+
 	}
+
 
 	
 	public void CloseFrame() {

@@ -19,7 +19,7 @@ public class GameBoard extends JPanel {
 	private Cell[][] cells = new Cell[GRID_SIZE][GRID_SIZE];
 	// It also contains a Puzzle
 	private Puzzle puzzle = new Puzzle();
-
+	private static final SudokuMain sudoku = new SudokuMain();
 	//Border oldBorder = jTextField.getBorder();
 	//Border redBorder = BorderFactory.createMatteBorder(0, 0, 0, 5, Color.RED);
 	//Border newBorder = BorderFactory.createCompoundBorder(redBorder, oldBorder);
@@ -179,7 +179,7 @@ public class GameBoard extends JPanel {
 			 *   by call isSolved(). Put up a congratulation JOptionPane, if so.
 			 */
 			if(isSolved())
-				JOptionPane.showMessageDialog(null, "Congratulation!");
+				JOptionPane.showMessageDialog(null, "        Congratulation!\n" + "        You completed the sudoku in " + sudoku.getTF());
 		}
 		public void keyPressed(KeyEvent e) {
 
