@@ -1,6 +1,9 @@
 package sudoku;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import javax.swing.*;
 /**
  * The main Sudoku program
@@ -11,6 +14,12 @@ public class SudokuMain extends JFrame {
 	JButton btnNewGame = new JButton("New Game");
 	JButton btnExit = new JButton("EXIT");
 	JButton btnReset = new JButton("Reset");
+	private static final int N = 60;
+	//private static final String stop = "Stop";
+	//private static final String start = "Start";
+	private final ClockListener cl = new ClockListener();
+	private final Timer t = new Timer(1000, cl);
+	private final JTextField tf = new JTextField(8);
 	GridBagConstraints gbc = new GridBagConstraints();
 	
 	
@@ -68,7 +77,17 @@ public class SudokuMain extends JFrame {
 		gbc.ipady = 10;
 		gbc.insets = new Insets(10, 50, 10, 50);
 		cp.add(btnExit, gbc);
-				
+		
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.gridwidth = 9;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0.5;
+		gbc.weighty = 0.5;
+		gbc.ipady = 10;
+		gbc.insets = new Insets(10, 50, 10, 50);
+		cp.add(tf,gbc);
+		
 		board.init();
 		
 		pack();     // Pack the UI components, instead of setSize()
@@ -97,6 +116,7 @@ public class SudokuMain extends JFrame {
 				CloseFrame();
 				SudokuMain sudoku = new SudokuMain();
 				sudoku.setJMenuBar(sudoku.Menu());
+				sudoku.start();
 	            }
 		});
 		file.add(newGame);
@@ -117,6 +137,34 @@ public class SudokuMain extends JFrame {
 		
 		return menuBar;
 	}
+	
+	public JPanel UpTimer() {
+		t.setInitialDelay(0);
+		JPanel upTimer = new JPanel();
+		
+	    tf.setEditable(false);
+	    upTimer.add(tf);
+	   // final JToggleButton b = new JToggleButton(stop);
+	    //b.addItemListener(new ItemListener() {
+
+	        //@Override
+	       // public void itemStateChanged(ItemEvent e) {
+	       //     if (b.isSelected()) {
+	      //          t.stop();
+	      //          b.setText(start);
+	       //     } else {
+	      //          t.start();
+	       //        b.setText(stop);
+	      //      }
+	     //   }
+	   // });
+	   // upTimer.add(b);
+		return upTimer;
+	}
+	
+	public void start() {
+	    t.start();
+	}
 
 	/** The entry main() entry method */
 	public static void main(String[] args) {
@@ -125,6 +173,7 @@ public class SudokuMain extends JFrame {
 	         public void run() {
 	        	SudokuMain sudoku = new SudokuMain();
 	     		sudoku.setJMenuBar(sudoku.Menu());
+	     		sudoku.start();
 	            
 	         }
 		});
@@ -136,6 +185,7 @@ public class SudokuMain extends JFrame {
 			CloseFrame();
 			SudokuMain sudoku = new SudokuMain();
 			sudoku.setJMenuBar(sudoku.Menu());
+			sudoku.start();
 		}
 	}
 
@@ -152,12 +202,41 @@ public class SudokuMain extends JFrame {
 			for(int row = 0; row < 9; row++) {
 				for(int col = 0; col < 9; col++) {
 					Cell sourceCell = (Cell)e.getSource();
-					
-					}
-				}
 
+				}
 			}
+
 		}
+	}
+	
+	private class ClockListener implements ActionListener {
+
+	    private int hours;
+	    private int minutes;
+	    private int seconds;
+	    private String hour;
+	    private String minute;
+	    private String second;
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	        NumberFormat formatter = new DecimalFormat("00");
+	        if (seconds == N) {
+	            seconds = 00;
+	            minutes++;
+	        }
+
+	        if (minutes == N) {
+	            minutes = 00;
+	            hours++;
+	        }
+	        hour = formatter.format(hours);
+	        minute = formatter.format(minutes);
+	        second = formatter.format(seconds);
+	        tf.setText(String.valueOf(hour + ":" + minute + ":" + second));
+	        seconds++;
+	    }
+	}
 
 	
 	public void CloseFrame() {
