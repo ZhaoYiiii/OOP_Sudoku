@@ -7,43 +7,45 @@ import javax.swing.*;
  */
 public class SudokuMain extends JFrame {
 	// private variables
-	final static boolean shouldFill = true;
 	GameBoard board = new GameBoard();
 	JButton btnNewGame = new JButton("New Game");
 	JButton exitGame = new JButton("EXIT");
+	GridBagConstraints gbc = new GridBagConstraints();
+	
+	
 
 	// Constructor
 	public SudokuMain() {
-		Container cp = getContentPane();
+		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
 
-		GridBagConstraints boardCons = new GridBagConstraints();
-		if(shouldFill) {
-			boardCons.fill = GridBagConstraints.BOTH;
-		}
-		boardCons.gridx = 1;
-		boardCons.gridy = 0;
-		cp.add(board, boardCons);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 3;
+		gbc.weightx = 0.5;
+		gbc.weighty = 0.5;
+		cp.add(board, gbc);
 
 		// Add a button to the south to re-start the game 
-		GridBagConstraints btnRSCons = new GridBagConstraints();
-		btnRSCons.fill = GridBagConstraints.HORIZONTAL;
-		btnRSCons.gridx = 1;
-		btnRSCons.gridy = GridBagConstraints.RELATIVE;
-		btnRSCons.gridwidth = 1;
-		btnRSCons.weighty = 1.0;
-		cp.add(btnNewGame, btnRSCons);
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+		gbc.gridy = GridBagConstraints.RELATIVE;
+		gbc.gridwidth = 1;
+		gbc.weighty = 1.0;
+		cp.add(btnNewGame, gbc);
+		
+				
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 1;
+		gbc.gridy = GridBagConstraints.RELATIVE;
+		gbc.gridwidth = 1;
+		gbc.weighty = 1.0;
+		cp.add(exitGame, gbc);
+		
 		ExitBtnListener restartListener = new ExitBtnListener();
 		btnNewGame.addActionListener(restartListener);
 
-		GridBagConstraints btnExitCons = new GridBagConstraints();
-		btnExitCons.fill = GridBagConstraints.HORIZONTAL;
-		btnExitCons.gridx = 1;
-		btnExitCons.gridy = GridBagConstraints.RELATIVE;
-		btnExitCons.gridwidth = 1;
-		btnExitCons.weighty = 1.0;
-		cp.add(btnNewGame, btnExitCons);
-		cp.add(exitGame, btnExitCons);
 		RestartBtnListener exitListener = new RestartBtnListener();
 		btnNewGame.addActionListener(exitListener);
 
@@ -57,14 +59,18 @@ public class SudokuMain extends JFrame {
 	/** The entry main() entry method */
 	public static void main(String[] args) {
 		// [TODO 1] Check Swing program template on how to run the constructor
-		SudokuMain sudoku = new SudokuMain();
+		SwingUtilities.invokeLater(new Runnable() {
+	         public void run() {
+	            new SudokuMain();
+	         }
+		});
 	}
 
 	private class RestartBtnListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) { //need to find a way to reset board
 			CloseFrame();
-			SudokuMain sudoku = new SudokuMain();
+		    new SudokuMain();
 		}
 	}
 
