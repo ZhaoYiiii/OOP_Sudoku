@@ -164,7 +164,7 @@ public class SudokuMain extends JFrame {
 		return upTimer;
 	}
 	
-	public String getTF() {
+	public String getTF() {  //shows seconds - 1 (needs fixing)
 		return time;
 	}
 	
