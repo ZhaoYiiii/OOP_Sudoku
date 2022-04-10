@@ -210,6 +210,7 @@ public class SudokuMain extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) { //Exit
 			CloseFrame(); 
+			System.exit(0);
 		}
 	}
 
