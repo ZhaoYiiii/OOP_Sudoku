@@ -141,21 +141,21 @@ public class Puzzle {
 		  {3, 4, 5, 2, 8, 6, 1, 7, 9}};
 		
 		// fill diagonal sections
-		for(int i = 0; i < 9; i+=4) {
-			int array1 [] = fillSection(i);
-			for(int j = 0; j < 9; j++) {
-				sections[i][j] = array1[j];
-			}  
-		}
-		for(int i = 0; i < 9; i+=4) {
-			for(int j = 0; j < 9; j++) {
-				System.out.println(sections[i][j]);
+		//for(int i = 0; i < 9; i+=4) {
+		//	int array1 [] = fillSection(i);
+		//	for(int j = 0; j < 9; j++) {
+		//		sections[i][j] = array1[j];
+		//	}  
+		//}
+		//for(int i = 0; i < 9; i+=4) {
+		//	for(int j = 0; j < 9; j++) {
+		//		System.out.println(sections[i][j]);
 				
-			}  
-			System.out.println();
-		}
+		//	}  
+		//	System.out.println();
+		//}
 		
-		System.out.println(sections);
+		//System.out.println(sections);
 		
 		// fill remaining of sections (1,2,3,5,6,7)
 //		for(int i = 0; i < 9; i++) {

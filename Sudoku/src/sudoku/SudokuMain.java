@@ -19,36 +19,34 @@ public class SudokuMain extends JFrame {
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
 
-		gbc.gridx = 1;
+		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 3;
+		gbc.gridwidth = 4;
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		cp.add(board, gbc);
 
 		// Add a button to the south to re-start the game 
+		ExitBtnListener restartListener = new ExitBtnListener();
+		btnNewGame.addActionListener(restartListener);
 		
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridx = 1;
-		gbc.gridy = GridBagConstraints.RELATIVE;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.weighty = 1.0;
+		gbc.weighty = 2.0;
 		cp.add(btnNewGame, gbc);
 		
+		RestartBtnListener exitListener = new RestartBtnListener();
+		btnNewGame.addActionListener(exitListener);
 				
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 1;
-		gbc.gridy = GridBagConstraints.RELATIVE;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.weighty = 1.0;
+		gbc.weighty = 2.0;
 		cp.add(exitGame, gbc);
-		
-		ExitBtnListener restartListener = new ExitBtnListener();
-		btnNewGame.addActionListener(restartListener);
-
-		RestartBtnListener exitListener = new RestartBtnListener();
-		btnNewGame.addActionListener(exitListener);
-
+				
 		board.init();
 		pack();     // Pack the UI components, instead of setSize()
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
