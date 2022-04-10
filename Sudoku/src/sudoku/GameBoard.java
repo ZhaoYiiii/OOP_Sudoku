@@ -19,7 +19,7 @@ public class GameBoard extends JPanel {
 	private Cell[][] cells = new Cell[GRID_SIZE][GRID_SIZE];
 	// It also contains a Puzzle
 	private Puzzle puzzle = new Puzzle();
-	private static final SudokuMain sudoku = new SudokuMain();
+	private static SudokuMain sudoku = null;
 	//Border oldBorder = jTextField.getBorder();
 	//Border redBorder = BorderFactory.createMatteBorder(0, 0, 0, 5, Color.RED);
 	//Border newBorder = BorderFactory.createCompoundBorder(redBorder, oldBorder);
@@ -89,6 +89,10 @@ public class GameBoard extends JPanel {
 		}
 
 		super.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
+	}
+	
+	public void setSudokuMain(SudokuMain main) {
+		this.sudoku = main;
 	}
 
 	/**

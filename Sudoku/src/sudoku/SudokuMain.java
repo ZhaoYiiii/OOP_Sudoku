@@ -26,6 +26,9 @@ public class SudokuMain extends JFrame {
 	
 	// Constructor
 	public SudokuMain() {
+		
+		board.setSudokuMain(this);
+		
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
 				
@@ -165,6 +168,7 @@ public class SudokuMain extends JFrame {
 	}
 	
 	public String getTF() {  //shows seconds - 1 (needs fixing)
+		t.stop();
 		return time;
 	}
 	
