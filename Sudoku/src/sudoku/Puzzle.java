@@ -1,5 +1,7 @@
 package sudoku;
 
+import java.util.Random;
+
 /**
  * The Sudoku number puzzle to be solved
  */
@@ -386,7 +388,21 @@ public class Puzzle {
 //		      numbers[row][col] = hardcodedNumbers[row][col];
 //		   }
 //		}
-
+				Random rand = new Random();
+				boolean[][] shown = new boolean[9][9];
+				for(int idx = 0; idx < 9; idx++){ //initialize 
+					for(int idxj = 0; idxj < 9; idxj++){
+						shown[idx][idxj] = true;
+					}
+				}
+				for(int idx = 0; idx < 10; idx++){ //the 10 is dependant on difficulty
+					//do{
+					int a = rand.nextInt(0,8);
+					int b = rand.nextInt(0,8);
+					shown[a][b]=false;
+					//}
+					//while(shown[a][b] != false);
+				}		
 		// Need to use numToGuess!
 		// For testing, only 2 cells of "8" is NOT shown
 		boolean[][] hardcodedIsShown =
@@ -403,7 +419,7 @@ public class Puzzle {
 		// Copy from hardcoded masks
 		for (int row = 0; row < GameBoard.GRID_SIZE; ++row) {
 			for (int col = 0; col < GameBoard.GRID_SIZE; ++col) {
-				isShown[row][col] = hardcodedIsShown[row][col];
+				isShown[row][col] = shown[row][col];
 			}
 		}
 	}
