@@ -14,16 +14,15 @@ public class SudokuMain extends JFrame {
 	GridBagConstraints gbc = new GridBagConstraints();
 	
 	
-
 	// Constructor
 	public SudokuMain() {
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
-		 
+				
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 9;
-		gbc.weightx = 0.5;
+		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weighty = 0.5;
 		gbc.insets = new Insets(20, 20, 0, 20);
 		cp.add(board, gbc);
@@ -35,43 +34,74 @@ public class SudokuMain extends JFrame {
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.gridwidth = 4;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.ipadx = 134;
+		gbc.ipadx = 100;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(10, 50, 0, 50);
+		gbc.insets = new Insets(10, 50, 0, 30);
 		cp.add(btnNewGame, gbc);
 		
 		ResetBtnListener resetListener = new ResetBtnListener();
 		btnReset.addActionListener(resetListener);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridx = 4;
+		gbc.gridy = 1;
 		gbc.gridwidth = 4;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.ipadx = 134;
+		gbc.ipadx = 100;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(10, 50, 0, 50);
+		gbc.insets = new Insets(10, 0, 0, 50);
 		cp.add(btnReset, gbc);
 		
 		ExitBtnListener exitListener = new ExitBtnListener();
 		btnExit.addActionListener(exitListener);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.gridwidth = 4;
+		gbc.gridy = 2;
+		gbc.gridwidth = 9;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.ipady = 10;
 		gbc.insets = new Insets(10, 50, 10, 50);
 		cp.add(btnExit, gbc);
 				
 		board.init();
+		
 		pack();     // Pack the UI components, instead of setSize()
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
 		setTitle("Sudoku");
 		setVisible(true);
+	}
+	
+	public JMenuBar Menu() {
+		JMenuBar menuBar = new JMenuBar();
+		JMenu file = new JMenu("File");
+		file.setMnemonic(KeyEvent.VK_A);
+		file.getAccessibleContext().setAccessibleDescription(
+		        "New Game & Exit");
+		menuBar.add(file);
+		
+		JMenuItem newGame = new JMenuItem("New Game",
+				KeyEvent.VK_T);
+		newGame.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		newGame.getAccessibleContext().setAccessibleDescription(
+				"This doesn't really do anything");
+		file.add(newGame);
+		
+		JMenuItem exit = new JMenuItem("Exit",
+				KeyEvent.VK_T);
+		exit.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		exit.getAccessibleContext().setAccessibleDescription(
+				"This doesn't really do anything");
+		file.add(exit);
+		
+		return menuBar;
 	}
 
 	/** The entry main() entry method */
@@ -79,7 +109,9 @@ public class SudokuMain extends JFrame {
 		// [TODO 1] Check Swing program template on how to run the constructor
 		SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
-	            new SudokuMain();
+	        	SudokuMain sudoku = new SudokuMain();
+	     		sudoku.setJMenuBar(sudoku.Menu());
+	            
 	         }
 		});
 	}
