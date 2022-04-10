@@ -33,7 +33,7 @@ public class SudokuMain extends JFrame {
 		cp.setLayout(new GridBagLayout());
 				
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.gridwidth = 9;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weighty = 0.5;
@@ -45,7 +45,7 @@ public class SudokuMain extends JFrame {
 		btnNewGame.addActionListener(newGameListener);
 				
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.gridwidth = 4;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -59,7 +59,7 @@ public class SudokuMain extends JFrame {
 		btnReset.addActionListener(resetListener);
 		
 		gbc.gridx = 4;
-		gbc.gridy = 1;
+		gbc.gridy = 2;
 		gbc.gridwidth = 4;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -73,7 +73,7 @@ public class SudokuMain extends JFrame {
 		btnExit.addActionListener(exitListener);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.gridwidth = 9;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -83,7 +83,7 @@ public class SudokuMain extends JFrame {
 		cp.add(btnExit, gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 0;
 		gbc.gridwidth = 9;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -247,6 +247,9 @@ public class SudokuMain extends JFrame {
 			minute = formatter.format(minutes);
 			second = formatter.format(seconds);
 			time = String.valueOf(hour + ":" + minute + ":" + second);
+			Font font1 = new Font("SansSerif", Font.BOLD, 30);
+			tf.setFont(font1);
+			tf.setHorizontalAlignment(JTextField.CENTER);
 			tf.setText(time);
 			seconds++;
 		}
