@@ -252,6 +252,8 @@ public class SudokuMain extends JFrame {
 			tf.setFont(font1);
 			tf.setHorizontalAlignment(JTextField.CENTER);
 			tf.setText(time);
+			tf.setEditable(false);
+			tf.setCaretColor(Color.WHITE);
 			seconds++;
 		}
 
