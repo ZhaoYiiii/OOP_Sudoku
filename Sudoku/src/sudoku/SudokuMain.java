@@ -43,6 +43,9 @@ public class SudokuMain extends JFrame {
 		// Add a button to the south to re-start the game 
 		NewGameBtnListener newGameListener = new NewGameBtnListener();
 		btnNewGame.addActionListener(newGameListener);
+		btnNewGame.setBackground(Color.GREEN);
+		Font font = new Font("Dialog", Font.BOLD, 20);
+		btnNewGame.setFont(font);
 				
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -57,6 +60,8 @@ public class SudokuMain extends JFrame {
 		
 		ResetBtnListener resetListener = new ResetBtnListener();
 		btnReset.addActionListener(resetListener);
+		btnReset.setBackground(Color.CYAN);
+		btnReset.setFont(font);
 		
 		gbc.gridx = 4;
 		gbc.gridy = 2;
@@ -71,6 +76,8 @@ public class SudokuMain extends JFrame {
 		
 		ExitBtnListener exitListener = new ExitBtnListener();
 		btnExit.addActionListener(exitListener);
+		btnExit.setBackground(Color.MAGENTA);
+		btnExit.setFont(font);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 3;
