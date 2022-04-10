@@ -20,31 +20,31 @@ public class Puzzle {
 	}
 
 	// fill 1 section (for diagonal)
-	int[] fillSection(int sessionIdx) {	
+	int[] fillSection(int sectionIdx) {	
 		int[] sectionfill = new int[9];
 		boolean isDupe = true;
-
-//		for(int idx = 0; idx < 9; idx++) { // should shift into do clause?
+		int random = 0;
 			for(int idxIn = 0; idxIn < 9; idxIn++) {
-				do {
-					int random = randomGenerator(9);
-					sectionfill[idxIn] = random; // should be 'idxIn' instead?
-					// fill random number in numbers[]
-					fillNumber(sessionIdx, idxIn, random);
-					
+				while(isDupe) {
+					random = randomGenerator(9);
 					// check if duplicate (loop through sectionfill)
-					for(int i = 0; i < 9; i++) {
-						if(sectionfill[i] != 0) { // if element is filled
-							isDupe = ifDuplicate(sectionfill[i], sectionfill[idxIn]);
-						}
-						
+					for(int i = 0; i < idxIn; i++) {
+							isDupe = ifDuplicate(sectionfill[i], random);
+							System.out.println(isDupe);
+							if(isDupe) {
+								break;
+							}
+					}
+					if(idxIn == 0) {
+						isDupe = false;
 					}
 				}
-//				while(ifDuplicate(sectionfill[idx], sectionfill[idxIn]) == true);
-				while(isDupe == true);
+				// fill random number in sectionfill[]
+				sectionfill[idxIn] = random;
+				// fill random number in numbers[][]
+				fillNumber(sectionIdx, idxIn, random);
+				isDupe = true;
 			}
-
-//		}
 		return sectionfill;
 	}
 	
@@ -71,7 +71,7 @@ public class Puzzle {
 		// add on rows within section
 		if(numberCount>6) {
 			r2 = 3;
-		} else if(sectionCount>3) {
+		} else if(numberCount>3) {
 			r2 = 2;
 		} else {
 			r2 = 1;
@@ -82,26 +82,149 @@ public class Puzzle {
 		// Calculate column
 		if(sectionCount%3 == 0) {
 			c1 = 2*3;
+			System.out.print(c1);
 		} else {
-			c1 = (sectionCount%3)*3;
+			c1 = (sectionCount%3-1)*3;
+			System.out.print(c1);
 		}
 		// add on columns within section
 		if(numberCount%3 == 0) {
 			c2 = 3;
+			System.out.print(c2);
 		} else {
 			c2 = (numberCount%3);
+			System.out.print(c2);
 		}
+		System.out.println();
 		
-		c = c+ c1 + c2;
+		c = c + c1 + c2;
 		
 		// fill in number
 		numbers[r][c] = number;
 		
 	}
 	
-	void fillRandomNumberAndCheck(int sectionIdx, int numberIdx) {
+	// fill 1 section (for diagonal)
+		int[] fillRemainingSection(int sectionIdx) {	
+			int[] sectionfill = new int[9];
+			boolean isDupeInNumbers = true;
+			boolean isDupeInsection = true;
+			int number = 0;
+			
+				for(int idxIn = 0; idxIn < 9; idxIn++) { // loop through each number index
+					number = 1;
+					while(number<10) {
+						
+						isDupeInsection = true;
+						
+//						while(isDupeInsection) {
+							//random = randomGenerator(9);
+							// check if duplicate (loop through sectionfill)
+							for(int i = 0; i < idxIn; i++) {
+								isDupeInsection = ifDuplicate(sectionfill[i], number);
+								System.out.println(idxIn);
+								System.out.println(number);
+								if(isDupeInsection) {
+									break;
+								}
+							}
+							if(idxIn == 0) {
+								isDupeInsection = false;
+							}
+//						}
+							if(!isDupeInsection) {
+								// check if duplicate and fill random number in numbers[][] if false
+								isDupeInNumbers = isDuplicate_fillInNumber(sectionIdx, idxIn, number);
+								System.out.println(isDupeInNumbers);
+								if(!isDupeInNumbers) {
+									break;
+								}
+							}
+						
+						number++;
+					}
+					//System.out.println(isDupeInsection);
+					// fill random number in sectionfill[]
+					sectionfill[idxIn] = number;
+					isDupeInNumbers = true;
+				}
+			return sectionfill;
+		}
+	
+	public boolean isDuplicate_fillInNumber (int sectionIdx, int numberIdx, int number) {
 		
+		int sectionCount = sectionIdx+1;
+		int numberCount = numberIdx+1;
+		int r = -1; // row index
+		int r1 = 0; // add on 1
+		int r2 = 0; // add on 2
+		int c = -1; // column index
+		int c1 = 0; // add on 1
+		int c2 = 0; // add on 2
 		
+		// Calculate row
+		if(sectionCount>6) {
+			r1 = 6;
+		} else if(sectionCount>3) {
+			r1 = 3;
+		} else {
+			r1 = 0;
+		}
+		// add on rows within section
+		if(numberCount>6) {
+			r2 = 3;
+		} else if(numberCount>3) {
+			r2 = 2;
+		} else {
+			r2 = 1;
+		}
+		
+		r = r + r1 + r2;
+		
+		// Calculate column
+		if(sectionCount%3 == 0) {
+			c1 = 2*3;
+			//System.out.print(c1);
+		} else {
+			c1 = (sectionCount%3-1)*3;
+			//System.out.print(c1);
+		}
+		// add on columns within section
+		if(numberCount%3 == 0) {
+			c2 = 3;
+			//System.out.print(c2);
+		} else {
+			c2 = (numberCount%3);
+			//System.out.print(c2);
+		}
+		System.out.println();
+		
+		c = c + c1 + c2;
+		
+		boolean duplicate = false;
+		
+		for(int i=0 ; i<9 ; i++) {
+			if(numbers[r][i] == number) {
+				duplicate = true;
+				break;
+			}
+		}
+		
+		if(!duplicate) {
+			for(int i=0 ; i<9 ; i++) {
+				if(numbers[i][c] == number) {
+					duplicate = true;
+					break;
+				}
+			}
+		}
+		
+		if(!duplicate) {
+			// fill in number
+			numbers[r][c] = number;
+		}
+		
+		return duplicate;
 		
 	}
 
@@ -129,45 +252,59 @@ public class Puzzle {
 	// Need to set the arrays numbers and isShown
 	public void newPuzzle(int numToGuess) {
 		// Hardcoded here for simplicity.
-		int[][] hardcodedNumbers =
-		 {{5, 3, 4, 6, 7, 8, 9, 1, 2},
-		  {6, 7, 2, 1, 9, 5, 3, 4, 8},
-		  {1, 9, 8, 3, 4, 2, 5, 6, 7},
-		  {8, 5, 9, 7, 6, 1, 4, 2, 3},
-		  {4, 2, 6, 8, 5, 3, 7, 9, 1},
-		  {7, 1, 3, 9, 2, 4, 8, 5, 6},
-		  {9, 6, 1, 5, 3, 7, 2, 8, 4},
-		  {2, 8, 7, 4, 1, 9, 6, 3, 5},
-		  {3, 4, 5, 2, 8, 6, 1, 7, 9}};
+//		int[][] hardcodedNumbers =
+//		 {{5, 3, 4, 6, 7, 8, 9, 1, 2},
+//		  {6, 7, 2, 1, 9, 5, 3, 4, 8},
+//		  {1, 9, 8, 3, 4, 2, 5, 6, 7},
+//		  {8, 5, 9, 7, 6, 1, 4, 2, 3},
+//		  {4, 2, 6, 8, 5, 3, 7, 9, 1},
+//		  {7, 1, 3, 9, 2, 4, 8, 5, 6},
+//		  {9, 6, 1, 5, 3, 7, 2, 8, 4},
+//		  {2, 8, 7, 4, 1, 9, 6, 3, 5},
+//		  {3, 4, 5, 2, 8, 6, 1, 7, 9}};
+		
 		
 		// fill diagonal sections
-		//for(int i = 0; i < 9; i+=4) {
-		//	int array1 [] = fillSection(i);
-		//	for(int j = 0; j < 9; j++) {
-		//		sections[i][j] = array1[j];
-		//	}  
-		//}
-		//for(int i = 0; i < 9; i+=4) {
-		//	for(int j = 0; j < 9; j++) {
-		//		System.out.println(sections[i][j]);
+		for(int i = 0; i < 9; i+=4) {
+			int array1 [] = fillSection(i);
+			for(int j = 0; j < 9; j++) {
+				sections[i][j] = array1[j];
+			}  
+		}
+		
+		// print numbers test
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0; j < 9; j++) {
+				System.out.print(numbers[i][j]);
 				
-		//	}  
-		//	System.out.println();
-		//}
+			}  
+			System.out.println();
+		}
 		
-		//System.out.println(sections);
+		// fill remaining sections (1,2,3,5,6,7)
+		int[] remainder = {1,2,3,5,6,7};
+		for(int i = 0; i < remainder.length; i++) {
+			int array1 [] = fillRemainingSection(remainder[i]);
+			for(int j = 0; j < 9; j++) {
+				sections[remainder[i]][j] = array1[j];
+			}  
+		}
 		
-		// fill remaining of sections (1,2,3,5,6,7)
-//		for(int i = 0; i < 9; i++) {
-//			
-//		}
+				// print numbers test
+				for(int i = 0; i < 9; i++) {
+					for(int j = 0; j < 9; j++) {
+						System.out.print(numbers[i][j]);
+						
+					}  
+					System.out.println();
+				}
 		
 		// Copy from hardcoded number
-		for (int row = 0; row < GameBoard.GRID_SIZE; ++row) {
-		   for (int col = 0; col < GameBoard.GRID_SIZE; ++col) {
-		      numbers[row][col] = hardcodedNumbers[row][col];
-		   }
-		}
+//		for (int row = 0; row < GameBoard.GRID_SIZE; ++row) {
+//		   for (int col = 0; col < GameBoard.GRID_SIZE; ++col) {
+//		      numbers[row][col] = hardcodedNumbers[row][col];
+//		   }
+//		}
 
 		// Need to use numToGuess!
 		// For testing, only 2 cells of "8" is NOT shown
