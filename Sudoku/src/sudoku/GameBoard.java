@@ -2,6 +2,7 @@ package sudoku;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class GameBoard extends JPanel {
 	// Name-constants for the game board properties
@@ -19,18 +20,77 @@ public class GameBoard extends JPanel {
 	// It also contains a Puzzle
 	private Puzzle puzzle = new Puzzle();
 
+	//Border oldBorder = jTextField.getBorder();
+	//Border redBorder = BorderFactory.createMatteBorder(0, 0, 0, 5, Color.RED);
+	//Border newBorder = BorderFactory.createCompoundBorder(redBorder, oldBorder);
+	//jTextField.setBorder(newBorder);
 
 	// Constructor
 	public GameBoard() {
 		super.setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));  // JPanel
-
 		// Allocate the 2D array of Cell, and added into JPanel.
 		for (int row = 0; row < GRID_SIZE; ++row) {
 			for (int col = 0; col < GRID_SIZE; ++col) {
 				cells[row][col] = new Cell(row, col);
-				super.add(cells[row][col]);   // JPanel
+				super.add(cells[row][col]);   // JPanel //Sorry for hardcoding this
+				if((row == 0 && col == 0) || (row == 0 && col == 3) ||(row == 0 && col == 6) || (row == 3 && col == 0) || (row == 3 && col == 3) ||(row == 3 && col == 6) ||(row == 6 && col == 0) ||(row == 6 && col == 3) ||(row == 6 && col == 6)) {
+					Border blackBorder = BorderFactory.createMatteBorder(3, 3, 0, 0, Color.BLACK); //(top,left,btm,right)
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 2, 2, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 0 && col == 1) || (row == 0 && col == 4) ||(row == 0 && col == 7) || (row == 3 && col == 1) || (row == 3 && col == 4) ||(row == 3 && col == 7) ||(row == 6 && col == 1) ||(row == 6 && col == 4) ||(row == 6 && col == 7)) {
+					Border blackBorder = BorderFactory.createMatteBorder(3, 0, 0, 0, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 2, 2, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 0 && col == 2) || (row == 0 && col == 5) ||(row == 0 && col == 8) || (row == 3 && col == 2) || (row == 3 && col == 5) ||(row == 3 && col == 8) ||(row == 6 && col == 2) ||(row == 6 && col == 5) ||(row == 6 && col == 8)) {
+					Border blackBorder = BorderFactory.createMatteBorder(3, 0, 0, 3, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 1 && col == 0) || (row == 1 && col == 3) ||(row == 1 && col == 6) || (row == 4 && col == 0) || (row == 4 && col == 3) ||(row == 4 && col == 6) ||(row == 7 && col == 0) ||(row == 7 && col == 3) ||(row == 7 && col == 6)) {
+					Border blackBorder = BorderFactory.createMatteBorder(0, 3, 0, 0, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 2, 2, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 1 && col == 1) || (row == 1 && col == 4) ||(row == 1 && col == 7) || (row == 4 && col == 1) || (row == 4 && col == 4) ||(row == 4 && col == 7) ||(row == 7 && col == 1) ||(row == 7 && col == 4) ||(row == 7 && col == 7)) {
+					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 2, 2, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 1 && col == 2) || (row == 1 && col == 5) ||(row == 1 && col == 8) || (row == 4 && col == 2) || (row == 4 && col == 5) ||(row == 4 && col == 8) ||(row == 7 && col == 2) ||(row == 7 && col == 5) ||(row == 7 && col == 8)) {
+					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 0, 3, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 2 && col == 0) || (row == 2 && col == 3) ||(row == 2 && col == 6) || (row == 5 && col == 0) || (row == 5 && col == 3) ||(row == 5 && col == 6) ||(row == 8 && col == 0) ||(row == 8 && col == 3) ||(row == 8 && col == 6)) {
+					Border blackBorder = BorderFactory.createMatteBorder(0, 3, 3, 0, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 2 && col == 1) || (row == 2 && col == 4) ||(row == 2 && col == 7) || (row == 5 && col == 1) || (row == 5 && col == 4) ||(row == 5 && col == 7) ||(row == 8 && col == 1) ||(row == 8 && col == 4) ||(row == 8 && col == 7)) {
+					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 3, 0, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
+				if((row == 2 && col == 2) || (row == 2 && col == 5) ||(row == 2 && col == 8) || (row == 5 && col == 2) || (row == 5 && col == 5) ||(row == 5 && col == 8) ||(row == 8 && col == 2) ||(row == 8 && col == 5) ||(row == 8 && col == 8)) {
+					Border blackBorder = BorderFactory.createMatteBorder(0, 0, 3, 3, Color.BLACK);
+					Border blackInnerBorder = BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK);
+					Border newBorder = BorderFactory.createCompoundBorder(blackBorder, blackInnerBorder);
+					cells[row][col].setBorder(newBorder);
+				}
 			}
 		}
+		
+		
 
 		// [TODO 3] Allocate a common listener as the ActionEvent listener for all the
 		//  Cells (JTextFields)
