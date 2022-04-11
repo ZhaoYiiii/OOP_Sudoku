@@ -3,6 +3,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.io.PrintWriter; // Step 1
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.FileWriter;
 
 public class GameBoard extends JPanel {
 	// Name-constants for the game board properties
@@ -141,6 +145,9 @@ public class GameBoard extends JPanel {
 
 	// [TODO 2] Define a Listener Inner Class
 	private class CellInputListener implements KeyListener {
+		
+		String nameInput;
+		
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// Get a reference of the JTextField that triggers this action event
@@ -176,8 +183,26 @@ public class GameBoard extends JPanel {
 			 * [TODO 6][Later] Check if the player has solved the puzzle after this move,
 			 *   by call isSolved(). Put up a congratulation JOptionPane, if so.
 			 */
-			if(isSolved())
-				JOptionPane.showMessageDialog(null, "        Congratulation!\n" + "        You completed the sudoku in " + sudoku.getTF());
+			if(isSolved()) {
+				//JOptionPane.showMessageDialog(null, "        Congratulation!\n" + "        You completed the sudoku in " + sudoku.getTF());
+				nameInput = JOptionPane.showInputDialog("	Congratulation!\n" + "	You completed the sudoku in " + sudoku.getTF()
+															+ "\n\n		Add your name to scorebord: ");
+				// test print
+				//System.out.println(nameInput + " " + sudoku.getTF());
+				// write name and timing in 'scoreboard' text file
+				try {
+					
+					FileWriter fw = new FileWriter("scoreboard.txt",true);
+					PrintWriter out = new PrintWriter(fw);
+					out.println(nameInput + " " + sudoku.getTF());
+					System.out.println(nameInput + " " + sudoku.getTF()); // print test
+					out.close();
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}
 		public void keyPressed(KeyEvent e) {
 
