@@ -1,3 +1,4 @@
-chowi 00:00:03
-emily 00:00:16
-emma 00:00:59
+chowi 00:00:03 easy
+emily 00:00:16 easy
+emma 00:00:59 easy
+sally 00:01:38 easy

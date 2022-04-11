@@ -24,6 +24,7 @@ public class GameBoard extends JPanel {
 	// It also contains a Puzzle
 	private Puzzle puzzle = new Puzzle();
 	private static SudokuMain sudoku = null;
+	private int difficultyInput;
 	//Border oldBorder = jTextField.getBorder();
 	//Border redBorder = BorderFactory.createMatteBorder(0, 0, 0, 5, Color.RED);
 	//Border newBorder = BorderFactory.createCompoundBorder(redBorder, oldBorder);
@@ -121,7 +122,7 @@ public class GameBoard extends JPanel {
 		
 		// prompts user to select difficulty level
 		String[] buttons = { "Easy", "Medium", "Hard"};    
-		int difficultyInput = JOptionPane.showOptionDialog(null, "Select a difficulty level", "Sudoku",
+		difficultyInput = JOptionPane.showOptionDialog(null, "Select a difficulty level", "Sudoku",
 		        JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
 		System.out.println(difficultyInput);
 		
@@ -134,6 +135,19 @@ public class GameBoard extends JPanel {
 				cells[row][col].init(puzzle.numbers[row][col], puzzle.isShown[row][col]);
 			}
 		}
+	}
+	
+	public String getDifficulty() {
+		String difficulty = null;
+		
+		if (difficultyInput == 0) {
+			difficulty = "easy";
+		}else if(difficultyInput == 1) {
+			difficulty = "medium";
+		}else if(difficultyInput == 2) {
+			difficulty = "hard";
+		}
+		return difficulty;
 	}
 
 	/**
@@ -197,11 +211,12 @@ public class GameBoard extends JPanel {
 															+ "\n\n		Add your name to scorebord: ");
 				
 				// write name and timing in 'scoreboard' text file
+				// <name> <timing> <difficulty>
 				try {
 					
 					FileWriter fw = new FileWriter("scoreboard.txt",true);
 					PrintWriter out = new PrintWriter(fw);
-					out.println(nameInput + " " + sudoku.getTF());
+					out.println(nameInput + " " + sudoku.getTF() + " " + getDifficulty());
 					System.out.println(nameInput + " " + sudoku.getTF()); // print test
 					out.close();
 					
