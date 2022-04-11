@@ -142,9 +142,25 @@ public class SudokuMain extends JFrame {
 			@Override
 			 public void actionPerformed(ActionEvent e){
 				CloseFrame();
+				System.exit(0);
 	            }
 		});
+		
 		file.add(exit);
+		
+		JMenuItem scoreboard = new JMenuItem("Scoreboard",
+				KeyEvent.VK_T);
+		scoreboard.setAccelerator(KeyStroke.getKeyStroke(
+				KeyEvent.VK_1, ActionEvent.ALT_MASK));
+		scoreboard.getAccessibleContext().setAccessibleDescription(
+				"This doesn't really do anything");
+		scoreboard.addActionListener(new ActionListener() {
+			@Override
+			 public void actionPerformed(ActionEvent e){
+				new Scoreboard();
+	            }
+		});
+		file.add(scoreboard);
 		
 		return menuBar;
 	}
