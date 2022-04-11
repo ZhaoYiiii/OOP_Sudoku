@@ -46,6 +46,9 @@ public class SudokuMain extends JFrame implements LineListener {
 		
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
+		
+		SoundEffect.init();
+		SoundEffect.BG_MUSIC.playContinue();
 				
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -122,71 +125,8 @@ public class SudokuMain extends JFrame implements LineListener {
 		setTitle("Sudoku");
 		setVisible(true);
 	}
-	public Clip getAudioPlay(){
-		File file = new File("C:\\Users\\User\\Desktop\\sample3.wav");
-		Clip audioClip1 = null;
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-			AudioFormat format = audioInputStream.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			Clip audioClip = (Clip) AudioSystem.getLine(info);
-		}
-		catch (UnsupportedAudioFileException ex) {
-            System.out.println("The specified audio file is not supported.");
-            ex.printStackTrace();
-        } catch (LineUnavailableException ex) {
-            System.out.println("Audio line for playing back is unavailable.");
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            System.out.println("Error playing the audio file.");
-            ex.printStackTrace();
-        }
-		return audioClip1;
-	}
 	
-	public void AudioPlay(String filename) {
 		
-		File file = new File(filename);
-		//Clip audioClip1 = null;
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-			AudioFormat format = audioInputStream.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			Clip audioClip = (Clip) AudioSystem.getLine(info);
-			//audioClip1 = audioClip;
-            audioClip.addLineListener(this);
-            audioClip.open(audioInputStream);
-            audioClip.start();
-            audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-            FloatControl gainControl = (FloatControl) audioClip.getControl(FloatControl.Type.MASTER_GAIN);
-            double gain = 0.01;   
-            float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-            gainControl.setValue(dB);
-            
-            //while (!playCompleted) {
-                // wait for the playback completes
-                //try {
-                 //   Thread.sleep(1000);
-               // } catch (InterruptedException ex) {
-                //    ex.printStackTrace();
-                //}
-           // }
-           // audioClip.close();
-		} catch (UnsupportedAudioFileException ex) {
-            System.out.println("The specified audio file is not supported.");
-            ex.printStackTrace();
-        } catch (LineUnavailableException ex) {
-            System.out.println("Audio line for playing back is unavailable.");
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            System.out.println("Error playing the audio file.");
-            ex.printStackTrace();
-        }
-		//return audioClip1;
-		
-	}
-	
-	
     public void update(LineEvent event) {
         LineEvent.Type type = event.getType();
          
@@ -269,30 +209,34 @@ public class SudokuMain extends JFrame implements LineListener {
 		
 		JMenuItem onAudio = new JMenuItem("Audio ON",
 				KeyEvent.VK_T);
-		scoreboard.setAccelerator(KeyStroke.getKeyStroke(
+		onAudio.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		scoreboard.getAccessibleContext().setAccessibleDescription(
+		onAudio.getAccessibleContext().setAccessibleDescription(
 				"This doesn't really do anything");
-		scoreboard.addActionListener(new ActionListener() {
+		onAudio.addActionListener(new ActionListener() {
 			@Override
 			 public void actionPerformed(ActionEvent e){
-					//FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
-					//double gain = 0.01;   
-					//float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-					//gainControl.setValue(dB);
+				SoundEffect.volume = SoundEffect.Volume.LOW;
+				SoundEffect.BG_MUSIC.playResume();
+//					FloatControl gainControl = (FloatControl) .getControl(FloatControl.Type.MASTER_GAIN);
+//					double gain = 0.01;   
+//					float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+//					gainControl.setValue(dB);
 	            }
 		});
 		audio.add(onAudio);
 		
 		JMenuItem offAudio = new JMenuItem("Audio OFF",
 				KeyEvent.VK_T);
-		scoreboard.setAccelerator(KeyStroke.getKeyStroke(
+		offAudio.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		scoreboard.getAccessibleContext().setAccessibleDescription(
+		offAudio.getAccessibleContext().setAccessibleDescription(
 				"This doesn't really do anything");
-		scoreboard.addActionListener(new ActionListener() {
+		offAudio.addActionListener(new ActionListener() {
 			@Override
 			 public void actionPerformed(ActionEvent e){
+				SoundEffect.volume = SoundEffect.Volume.MUTE;
+				SoundEffect.BG_MUSIC.playMute();
 					//FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
 					//double gain = 0;   
 					//float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
@@ -355,7 +299,6 @@ public class SudokuMain extends JFrame implements LineListener {
 //	        	path.toAbsolutePath();
 	     		sudoku.setJMenuBar(sudoku.Menu());
 	     		sudoku.start();
-	     		sudoku.AudioPlay(audioFilePath);
 	            
 	         }
 		});
