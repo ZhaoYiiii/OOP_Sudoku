@@ -216,7 +216,7 @@ public class GameBoard extends JPanel {
 					
 					FileWriter fw = new FileWriter("scoreboard.txt",true);
 					PrintWriter out = new PrintWriter(fw);
-					out.println(getDifficulty() + "|" + nameInput + "|" + sudoku.getTF() + "|" + sudoku.getTotalSeconds());
+					out.println(getDifficulty() + "|" + nameInput + "|" + sudoku.getTF() + "|" + sudoku.getTotalSeconds() + "|");
 					System.out.println(getDifficulty() + "|" + nameInput + "|" + sudoku.getTF() + "|" + sudoku.getTotalSeconds()); // print test
 					out.close();
 					

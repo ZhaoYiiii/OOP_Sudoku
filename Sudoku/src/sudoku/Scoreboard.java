@@ -128,7 +128,7 @@ public class Scoreboard extends JFrame {
 		try {
 			scanner = new Scanner(fileObj);
 			int lineIndex = 0;
-			while(scanner.hasNextLine() && lineIndex<10){   //Can also use a BufferedReader
+			while(scanner.hasNextLine()){   //Can also use a BufferedReader
 			    String data = scanner.nextLine();
 			    if(data.contains("|")) {    //Ensure line contains "|"
 			    	
