@@ -33,6 +33,7 @@ public class SudokuMain extends JFrame implements LineListener {
 	private final Timer t = new Timer(1000, cl);
 	private final JTextField tf = new JTextField(8);
 	private static String time;
+	private int totalSeconds;
 	GridBagConstraints gbc = new GridBagConstraints();
 	private boolean playCompleted;
 	
@@ -326,9 +327,14 @@ public class SudokuMain extends JFrame implements LineListener {
 		return upTimer;
 	}
 	
-	public String getTF() {  //shows seconds - 1 (needs fixing)
+	public String getTF() { 
 		t.stop();
 		return time;
+	}
+	
+	public int getTotalSeconds() {
+		
+		return totalSeconds;
 	}
 	
 	public void start() {
@@ -410,6 +416,7 @@ public class SudokuMain extends JFrame implements LineListener {
 			tf.setEditable(false);
 			tf.setCaretColor(Color.WHITE);
 			seconds++;
+			totalSeconds++;
 		}
 
 	}

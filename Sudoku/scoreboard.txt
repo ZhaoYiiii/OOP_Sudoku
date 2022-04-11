@@ -6,3 +6,5 @@ easy|emily|00:00:16|16|
 hard|emily|01:00:21|3621|
 easy|emma|00:00:59|59|
 medium|emma|00:20:51|1251|
+easy|wendy|00:01:04|64
+easy|andy|00:01:28|88

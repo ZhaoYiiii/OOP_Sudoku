@@ -216,14 +216,16 @@ public class GameBoard extends JPanel {
 					
 					FileWriter fw = new FileWriter("scoreboard.txt",true);
 					PrintWriter out = new PrintWriter(fw);
-					out.println(nameInput + " " + sudoku.getTF() + " " + getDifficulty());
-					System.out.println(nameInput + " " + sudoku.getTF()); // print test
+					out.println(getDifficulty() + "|" + nameInput + "|" + sudoku.getTF() + "|" + sudoku.getTotalSeconds());
+					System.out.println(getDifficulty() + "|" + nameInput + "|" + sudoku.getTF() + "|" + sudoku.getTotalSeconds()); // print test
 					out.close();
 					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				new Scoreboard();
 			}
 		}
 		public void keyPressed(KeyEvent e) {
