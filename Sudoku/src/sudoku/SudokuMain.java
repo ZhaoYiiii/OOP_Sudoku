@@ -276,10 +276,10 @@ public class SudokuMain extends JFrame implements LineListener {
 		scoreboard.addActionListener(new ActionListener() {
 			@Override
 			 public void actionPerformed(ActionEvent e){
-					FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
-					double gain = 0.01;   
-					float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-					gainControl.setValue(dB);
+					//FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
+					//double gain = 0.01;   
+					//float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+					//gainControl.setValue(dB);
 	            }
 		});
 		audio.add(onAudio);
@@ -293,10 +293,10 @@ public class SudokuMain extends JFrame implements LineListener {
 		scoreboard.addActionListener(new ActionListener() {
 			@Override
 			 public void actionPerformed(ActionEvent e){
-					FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
-					double gain = 0;   
-					float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-					gainControl.setValue(dB);
+					//FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
+					//double gain = 0;   
+					//float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+					//gainControl.setValue(dB);
 	            }
 		});
 		audio.add(offAudio);
