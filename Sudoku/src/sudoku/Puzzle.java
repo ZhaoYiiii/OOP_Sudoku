@@ -396,12 +396,14 @@ public class Puzzle {
 					}
 				}
 				for(int idx = 0; idx < 10; idx++){ //the 10 is dependant on difficulty
-					//do{
-					int a = rand.nextInt(0,8);
-					int b = rand.nextInt(0,8);
+					int a = -1;
+					int b = -1;
+					do{
+					a = rand.nextInt(0,8);
+					b = rand.nextInt(0,8);
+					}
+					while(shown[a][b] == false);
 					shown[a][b]=false;
-					//}
-					//while(shown[a][b] != false);
 				}		
 		// Need to use numToGuess!
 		// For testing, only 2 cells of "8" is NOT shown
