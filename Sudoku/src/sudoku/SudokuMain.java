@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -347,7 +349,10 @@ public class SudokuMain extends JFrame implements LineListener {
 		SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
 	        	SudokuMain sudoku = new SudokuMain();
-	        	String audioFilePath = "C:\\Users\\User\\Documents\\GitHub\\OOP_Sudoku\\Sudoku\\audio";
+	        	String dir = System.getProperty("user.dir");
+	        	String audioFilePath = dir + "/audio/sample3.wav";
+//	        	Path path = Paths.get("/audio/sample3.wav");
+//	        	path.toAbsolutePath();
 	     		sudoku.setJMenuBar(sudoku.Menu());
 	     		sudoku.start();
 	     		sudoku.AudioPlay(audioFilePath);
