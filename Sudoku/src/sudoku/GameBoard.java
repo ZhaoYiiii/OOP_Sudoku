@@ -118,8 +118,15 @@ public class GameBoard extends JPanel {
 	 * Call to start a new game.
 	 */
 	public void init() {
+		
+		// prompts user to select difficulty level
+		String[] buttons = { "Easy", "Medium", "Hard"};    
+		int difficultyInput = JOptionPane.showOptionDialog(null, "Select a difficulty level", "Sudoku",
+		        JOptionPane.PLAIN_MESSAGE, 0, null, buttons, buttons[0]);
+		System.out.println(difficultyInput);
+		
 		// Get a new puzzle
-		puzzle.newPuzzle(2);
+		puzzle.newPuzzle(difficultyInput);
 
 		// Based on the puzzle, initialize all the cells.
 		for (int row = 0; row < GRID_SIZE; ++row) {
@@ -188,8 +195,7 @@ public class GameBoard extends JPanel {
 				//JOptionPane.showMessageDialog(null, "        Congratulation!\n" + "        You completed the sudoku in " + sudoku.getTF());
 				nameInput = JOptionPane.showInputDialog("	Congratulation!\n" + "	You completed the sudoku in " + sudoku.getTF()
 															+ "\n\n		Add your name to scorebord: ");
-				// test print
-				//System.out.println(nameInput + " " + sudoku.getTF());
+				
 				// write name and timing in 'scoreboard' text file
 				try {
 					

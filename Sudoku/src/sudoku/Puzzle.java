@@ -34,7 +34,7 @@ public class Puzzle {
 					// check if duplicate (loop through sectionfill)
 					for(int i = 0; i < idxIn; i++) {
 							isDupe = ifDuplicate(sectionfill[i], random);
-							System.out.println(isDupe);
+							//System.out.println(isDupe);
 							if(isDupe) {
 								break;
 							}
@@ -86,20 +86,20 @@ public class Puzzle {
 		// Calculate column
 		if(sectionCount%3 == 0) {
 			c1 = 2*3;
-			System.out.print(c1);
+			//System.out.print(c1);
 		} else {
 			c1 = (sectionCount%3-1)*3;
-			System.out.print(c1);
+			//System.out.print(c1);
 		}
 		// add on columns within section
 		if(numberCount%3 == 0) {
 			c2 = 3;
-			System.out.print(c2);
+			//System.out.print(c2);
 		} else {
 			c2 = (numberCount%3);
-			System.out.print(c2);
+			//System.out.print(c2);
 		}
-		System.out.println();
+		//System.out.println();
 		
 		c = c + c1 + c2;
 		
@@ -331,7 +331,7 @@ public class Puzzle {
 
 	// Generate a new puzzle given the number of cells to be guessed
 	// Need to set the arrays numbers and isShown
-	public void newPuzzle(int numToGuess) {
+	public void newPuzzle(int difficulty) {
 		// Hardcoded here for simplicity.
 //		int[][] hardcodedNumbers =
 //		 {{5, 3, 4, 6, 7, 8, 9, 1, 2},
@@ -395,7 +395,18 @@ public class Puzzle {
 						shown[idx][idxj] = true;
 					}
 				}
-				for(int idx = 0; idx < 10; idx++){ //the 10 is dependant on difficulty
+				
+				int blanks = 10;
+				
+				if (difficulty == 0) {
+					blanks = 10;
+				}else if(difficulty == 1) {
+					blanks = 25;
+				}else if(difficulty == 2) {
+					blanks = 35;
+				}
+				
+				for(int idx = 0; idx < blanks; idx++){ //the 10 is dependant on difficulty
 					int a = -1;
 					int b = -1;
 					do{
