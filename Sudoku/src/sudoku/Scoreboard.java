@@ -118,8 +118,7 @@ public class Scoreboard extends JFrame {
 			    	
 			    	int indexOfFirst = data.indexOf("|");
 			    	String difficulty = data.substring(0, indexOfFirst);
-			    	System.out.println(difficulty);
-			    	//System.out.println(name + " " + timing + " " + seconds + " " + difficulty + " ");
+			    	//System.out.println(difficulty);
 			    	
 			    	if(difficulty.equals(difficultyString)) {
 			    		String[] line = new String[3];
