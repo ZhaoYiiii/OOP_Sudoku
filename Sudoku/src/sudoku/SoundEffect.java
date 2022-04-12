@@ -60,12 +60,12 @@ public enum SoundEffect {
 		   if (clip.isRunning())
 			   clip.stop();   // Stop the player if it is still running
 		   clip.setFramePosition(0); // rewind to the beginning
-		   clip.start();     // Start playing
-		   clip.loop(Clip.LOOP_CONTINUOUSLY);
 		   FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-		   double gain = 0.01;   
+		   double gain = 0.20;   
 		   float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 		   gainControl.setValue(dB);
+		   clip.start();     // Start playing
+		   clip.loop(Clip.LOOP_CONTINUOUSLY);
 	   } 
    }
    
@@ -73,7 +73,7 @@ public enum SoundEffect {
 	   if (volume != Volume.MUTE) {
 		   if (clip.isRunning()) {
 			   FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			   double gain = 0.01;   
+			   double gain = 0.20;   
 			   float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 			   gainControl.setValue(dB);
 		   }
