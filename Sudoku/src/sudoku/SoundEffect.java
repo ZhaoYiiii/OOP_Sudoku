@@ -59,7 +59,7 @@ public enum SoundEffect {
 	   if (volume != Volume.MUTE) {
 		   if (clip.isRunning())
 			   clip.stop();   // Stop the player if it is still running
-		   clip.setFramePosition(0); // rewind to the beginning
+		   //clip.setFramePosition(0); // rewind to the beginning
 		   FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
 		   double gain = 0.20;   
 		   float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);

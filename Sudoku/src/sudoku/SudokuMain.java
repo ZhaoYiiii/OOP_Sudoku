@@ -19,6 +19,8 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+
+import sudoku.SoundEffect.Volume;
 /**
  * The main Sudoku program
  */
@@ -29,7 +31,7 @@ public class SudokuMain extends JFrame implements LineListener {
 	JButton btnExit = new JButton("EXIT");
 	JButton btnReset = new JButton("Reset");
 	int hintsLeft = 3;
-	JButton btnHint = new JButton("Hint		(" + hintsLeft + " / 3 left)");
+	JButton btnHint = new JButton("Hint (" + hintsLeft + " / 3 left)");
 	private static final int N = 60;
 	//private static final String stop = "Stop";
 	//private static final String start = "Start";
@@ -56,6 +58,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.gridy = 1;
 		gbc.gridwidth = 9;
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		gbc.insets = new Insets(20, 20, 0, 20);
 		cp.add(board, gbc);
@@ -76,7 +79,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.weighty = 0.5;
 		gbc.ipadx = 100;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(10, 50, 0, 30);
+		gbc.insets = new Insets(10, 50, 0, 50);
 		cp.add(btnHint, gbc);
 		
 		// Add a button to the south to re-start the game 
@@ -134,7 +137,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(10, 50, 10, 50);
+		gbc.insets = new Insets(10, 50, 0, 50);
 		cp.add(tf,gbc);
 		
 		board.init();
@@ -314,8 +317,8 @@ public class SudokuMain extends JFrame implements LineListener {
 		SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
 	        	SudokuMain sudoku = new SudokuMain();
-	        	String dir = System.getProperty("user.dir");
-	        	String audioFilePath = dir + "/audio/sample3.wav";
+	        	//String dir = System.getProperty("user.dir");
+	        	//String audioFilePath = dir + "/audio/sample3.wav";
 //	        	Path path = Paths.get("/audio/sample3.wav");
 //	        	path.toAbsolutePath();
 	     		sudoku.setJMenuBar(sudoku.Menu());
@@ -331,7 +334,7 @@ public class SudokuMain extends JFrame implements LineListener {
 			if(hintsLeft!=0) {
 				// change button text
 				hintsLeft--;
-				btnHint.setText("Hint		(" + hintsLeft + " / 3 left)");
+				btnHint.setText("Hint (" + hintsLeft + " / 3 left)");
 				// use 1 hint: enter a correct input for player
 				board.useHint();
 			}

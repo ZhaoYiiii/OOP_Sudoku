@@ -95,7 +95,7 @@ public class Scoreboard extends JFrame {
 		gbc.weighty = 0.5;
 		gbc.ipadx = 100;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(6, 50, 0, 30);
+		gbc.insets = new Insets(6, 50, 0, 50);
 		cp.add(btnNewGame, gbc);
 		
 		// close button
@@ -111,7 +111,7 @@ public class Scoreboard extends JFrame {
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		gbc.ipady = 10;
-		gbc.insets = new Insets(6, 50, 10, 30);
+		gbc.insets = new Insets(6, 50, 10, 50);
 		cp.add(btnClose, gbc);
 				
 		pack();     // Pack the UI components, instead of setSize()
