@@ -137,6 +137,10 @@ public class GameBoard extends JPanel {
 		}
 	}
 	
+	public void useHint() {
+		
+	}
+	
 	public String getDifficulty() {
 		String difficulty = null;
 		

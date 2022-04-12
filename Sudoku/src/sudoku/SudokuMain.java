@@ -28,6 +28,8 @@ public class SudokuMain extends JFrame implements LineListener {
 	JButton btnNewGame = new JButton("New Game");
 	JButton btnExit = new JButton("EXIT");
 	JButton btnReset = new JButton("Reset");
+	int hintsLeft = 3;
+	JButton btnHint = new JButton("Hint		(" + hintsLeft + " / 3 left)");
 	private static final int N = 60;
 	//private static final String stop = "Stop";
 	//private static final String start = "Start";
@@ -58,15 +60,33 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.insets = new Insets(20, 20, 0, 20);
 		cp.add(board, gbc);
 
+		Font font = new Font("Dialog", Font.BOLD, 20);
+		
+		// hint button
+		HintBtnListener hintListener = new HintBtnListener();
+		btnHint.addActionListener(hintListener);
+		btnHint.setBackground(Color.GREEN);
+		btnHint.setFont(font);
+				
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 9;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 0.5;
+		gbc.weighty = 0.5;
+		gbc.ipadx = 100;
+		gbc.ipady = 10;
+		gbc.insets = new Insets(10, 50, 0, 30);
+		cp.add(btnHint, gbc);
+		
 		// Add a button to the south to re-start the game 
 		NewGameBtnListener newGameListener = new NewGameBtnListener();
 		btnNewGame.addActionListener(newGameListener);
 		btnNewGame.setBackground(Color.GREEN);
-		Font font = new Font("Dialog", Font.BOLD, 20);
 		btnNewGame.setFont(font);
 				
 		gbc.gridx = 0;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.gridwidth = 4;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -82,7 +102,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		btnReset.setFont(font);
 		
 		gbc.gridx = 4;
-		gbc.gridy = 2;
+		gbc.gridy = 3;
 		gbc.gridwidth = 4;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -98,7 +118,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		btnExit.setFont(font);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		gbc.gridwidth = 9;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
@@ -303,6 +323,19 @@ public class SudokuMain extends JFrame implements LineListener {
 	            
 	         }
 		});
+	}
+	
+	private class HintBtnListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) { //New Game
+			if(hintsLeft!=0) {
+				// change button text
+				hintsLeft--;
+				btnHint.setText("Hint		(" + hintsLeft + " / 3 left)");
+				// use 1 hint: enter a correct input for player
+				board.useHint();
+			}
+		}
 	}
 
 	private class NewGameBtnListener implements ActionListener{
