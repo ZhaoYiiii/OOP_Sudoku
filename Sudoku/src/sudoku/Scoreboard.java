@@ -116,6 +116,7 @@ public class Scoreboard extends JFrame {
 				
 		pack();     // Pack the UI components, instead of setSize()
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // Handle window closing
+		setLocationRelativeTo(null);
 		setTitle("Sudoku - Scoreboard");
 		setVisible(true);
 	}
