@@ -145,6 +145,7 @@ public class SudokuMain extends JFrame implements LineListener {
 	    
 		pack();     // Pack the UI components, instead of setSize()
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Handle window closing
+		setLocationRelativeTo(null);
 		setTitle("Sudoku");
 		setVisible(true);
 	}
