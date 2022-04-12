@@ -1,26 +1,11 @@
 package sudoku;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.*;
 
-import sudoku.SoundEffect.Volume;
+import javax.swing.*;
 /**
  * The main Sudoku program
  */
@@ -33,8 +18,6 @@ public class SudokuMain extends JFrame{
 	int hintsLeft = 3;
 	JButton btnHint = new JButton("Hint (" + hintsLeft + " / 3 left)");
 	private static final int N = 60;
-	//private static final String stop = "Stop";
-	//private static final String start = "Start";
 	private final ClockListener cl = new ClockListener();
 	private final Timer t = new Timer(1000, cl);
 	private final JTextField tf = new JTextField(8);
@@ -162,18 +145,6 @@ public class SudokuMain extends JFrame{
 	}
 	
 		
-    public void update(LineEvent event) {
-        LineEvent.Type type = event.getType();
-         
-        if (type == LineEvent.Type.START) {
-            System.out.println("Playback started.");
-             
-        } else if (type == LineEvent.Type.STOP) {
-            playCompleted = true;
-            System.out.println("Playback completed.");
-        }
- 
-    }
 	
 	public JMenuBar Menu() {
 		JMenuBar menuBar = new JMenuBar();
@@ -254,10 +225,6 @@ public class SudokuMain extends JFrame{
 			 public void actionPerformed(ActionEvent e){
 				SoundEffect.volume = SoundEffect.Volume.LOW;
 				SoundEffect.BG_MUSIC.playResume();
-//					FloatControl gainControl = (FloatControl) .getControl(FloatControl.Type.MASTER_GAIN);
-//					double gain = 0.01;   
-//					float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-//					gainControl.setValue(dB);
 	            }
 		});
 		audio.add(onAudio);
@@ -273,10 +240,6 @@ public class SudokuMain extends JFrame{
 			 public void actionPerformed(ActionEvent e){
 				SoundEffect.volume = SoundEffect.Volume.MUTE;
 				SoundEffect.BG_MUSIC.playMute();
-					//FloatControl gainControl = (FloatControl) getAudioPlay().getControl(FloatControl.Type.MASTER_GAIN);
-					//double gain = 0;   
-					//float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
-					//gainControl.setValue(dB);
 	            }
 		});
 		audio.add(offAudio);
@@ -290,22 +253,6 @@ public class SudokuMain extends JFrame{
 		
 	    tf.setEditable(false);
 	    upTimer.add(tf);
-  
-	   // final JToggleButton b = new JToggleButton(stop);
-	    //b.addItemListener(new ItemListener() {
-
-	        //@Override
-	       // public void itemStateChanged(ItemEvent e) {
-	       //     if (b.isSelected()) {
-	      //          t.stop();
-	      //          b.setText(start);
-	       //     } else {
-	      //          t.start();
-	       //        b.setText(stop);
-	      //      }
-	     //   }
-	   // });
-	   // upTimer.add(b);
 		return upTimer;
 	}
 	
@@ -329,10 +276,6 @@ public class SudokuMain extends JFrame{
 		SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
 	        	SudokuMain sudoku = new SudokuMain();
-	        	//String dir = System.getProperty("user.dir");
-	        	//String audioFilePath = dir + "/audio/sample3.wav";
-//	        	Path path = Paths.get("/audio/sample3.wav");
-//	        	path.toAbsolutePath();
 	     		sudoku.setJMenuBar(sudoku.Menu());
 	     		sudoku.start();
 	            

@@ -1,13 +1,8 @@
 package sudoku;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.io.*;
 import java.util.*;
-import java.lang.*;
-import java.awt.List;
-
 import javax.swing.*;
 
 /**
@@ -61,24 +56,6 @@ public class Scoreboard extends JFrame {
 		tabbedPane.addTab("Hard", tab3);
 		
 		cp.add(tabbedPane, gbc);
-		
-		//ImageIcon icon = createImageIcon("images/middle.gif");
-
-//		JComponent panel1 = makeTextPanel("Panel #1");
-//		tabbedPane.addTab("Tab 1", null, panel1,
-//		                  "Does nothing");
-//		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
-//
-//		JComponent panel2 = makeTextPanel("Panel #2");
-//		tabbedPane.addTab("Tab 2", null, panel2,
-//		                  "Does twice as much nothing");
-//		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
-//
-//		JComponent panel3 = makeTextPanel("Panel #3");
-//		tabbedPane.addTab("Tab 3", null, panel3,
-//		                  "Still does nothing");
-//		tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-		
 		
 		
 		// new game button
