@@ -262,7 +262,8 @@ public class GameBoard extends JPanel {
 					e1.printStackTrace();
 				}
 				
-				new Scoreboard();
+				Scoreboard sb = new Scoreboard();
+				sb.setSudokuMain(sudoku);
 			}
 		}
 		public void keyPressed(KeyEvent e) {

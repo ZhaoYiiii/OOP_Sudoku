@@ -316,7 +316,7 @@ public class SudokuMain extends JFrame{
 	
 	public int getTotalSeconds() {
 		
-		return totalSeconds;
+		return totalSeconds-1;
 	}
 	
 	public void start() {
