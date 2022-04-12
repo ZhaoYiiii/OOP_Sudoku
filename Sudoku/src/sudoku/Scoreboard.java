@@ -19,6 +19,7 @@ public class Scoreboard extends JFrame {
 	JButton btnNewGame = new JButton("New Game");
 	JButton btnClose = new JButton("Close");
 	GridBagConstraints gbc = new GridBagConstraints();
+	private static SudokuMain oldSudoku = null;
 	
 	// Constructor
 	public Scoreboard() {
@@ -203,6 +204,10 @@ public class Scoreboard extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) { //New Game
 			CloseFrame();
+			
+			// close old sudoku window
+			oldSudoku.CloseFrame();
+			
 			SudokuMain sudoku = new SudokuMain();
 			sudoku.setJMenuBar(sudoku.Menu());
 			sudoku.start();
@@ -218,5 +223,9 @@ public class Scoreboard extends JFrame {
 
 	public void CloseFrame() {
 		super.dispose();
+	}
+	
+	public void setSudokuMain(SudokuMain main) {
+		this.oldSudoku = main;
 	}
 }

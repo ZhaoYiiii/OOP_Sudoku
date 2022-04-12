@@ -196,7 +196,8 @@ public class SudokuMain extends JFrame implements LineListener {
 		scoreboard.addActionListener(new ActionListener() {
 			@Override
 			 public void actionPerformed(ActionEvent e){
-				new Scoreboard();
+				Scoreboard sb = new Scoreboard();
+				sb.setSudokuMain(SudokuMain.this);
 	            }
 		});
 		jScore.add(scoreboard);
@@ -286,7 +287,7 @@ public class SudokuMain extends JFrame implements LineListener {
 	public void start() {
 	    t.start();
 	}
-
+	
 	/** The entry main() entry method */
 	public static void main(String[] args) {
 		// [TODO 1] Check Swing program template on how to run the constructor
@@ -369,9 +370,8 @@ public class SudokuMain extends JFrame implements LineListener {
 
 	}
 
-
-	
 	public void CloseFrame() {
 		super.dispose();
 	}
+	
 }
