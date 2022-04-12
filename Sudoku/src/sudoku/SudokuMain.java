@@ -51,7 +51,7 @@ public class SudokuMain extends JFrame{
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
 		
-		cp.setBackground(new Color(27, 27, 33));
+		//cp.setBackground(new Color(80, 225, 197));
 		
 		SoundEffect.init();
 		SoundEffect.BG_MUSIC.playContinue();
@@ -70,9 +70,10 @@ public class SudokuMain extends JFrame{
 		// hint button
 		HintBtnListener hintListener = new HintBtnListener();
 		btnHint.addActionListener(hintListener);
-		btnHint.setBackground(new Color(246, 224, 163));
+		//btnHint.setBackground(new Color(246, 224, 163));
+		btnHint.setBackground(Color.GREEN);
 		btnHint.setFont(font);
-		btnHint.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+		btnHint.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLACK));
 				
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -82,15 +83,16 @@ public class SudokuMain extends JFrame{
 		gbc.weighty = 0.5;
 		gbc.ipadx = 100;
 		gbc.ipady = 3;
-		gbc.insets = new Insets(10, 50, 0, 50);
+		gbc.insets = new Insets(0, 50, 0, 50);
 		cp.add(btnHint, gbc);
 		
 		// Add a button to the south to re-start the game 
 		NewGameBtnListener newGameListener = new NewGameBtnListener();
 		btnNewGame.addActionListener(newGameListener);
-		btnNewGame.setBackground(new Color(152, 224, 163));
+		//btnNewGame.setBackground(new Color(152, 224, 163));
+		btnNewGame.setBackground(Color.GREEN);
 		btnNewGame.setFont(font);
-		btnNewGame.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+		btnNewGame.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLACK));
 				
 		gbc.gridx = 0;
 		gbc.gridy = 3;
@@ -105,9 +107,10 @@ public class SudokuMain extends JFrame{
 		
 		ResetBtnListener resetListener = new ResetBtnListener();
 		btnReset.addActionListener(resetListener);
-		btnReset.setBackground(new Color(203, 95, 77));
+		//btnReset.setBackground(new Color(203, 95, 77));
+		btnReset.setBackground(Color.CYAN);
 		btnReset.setFont(font);
-		btnReset.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+		btnReset.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLACK));
 		
 		gbc.gridx = 4;
 		gbc.gridy = 3;
@@ -122,9 +125,10 @@ public class SudokuMain extends JFrame{
 		
 		ExitBtnListener exitListener = new ExitBtnListener();
 		btnExit.addActionListener(exitListener);
-		btnExit.setBackground(new Color(244, 181, 222));
+		//btnExit.setBackground(new Color(244, 181, 222));
+		btnExit.setBackground(Color.MAGENTA);
 		btnExit.setFont(font);
-		btnExit.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
+		btnExit.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLACK));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 4;
@@ -144,7 +148,7 @@ public class SudokuMain extends JFrame{
 		gbc.weighty = 0.5;
 		gbc.ipady = 3;
 		gbc.insets = new Insets(20, 50, 0, 50);
-		tf.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.CYAN));
+		tf.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.BLACK));
 		cp.add(tf,gbc);
 		
 		board.init();

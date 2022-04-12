@@ -84,7 +84,8 @@ public class Scoreboard extends JFrame {
 		// new game button
 		NewGameBtnListener newGameListener = new NewGameBtnListener();
 		btnNewGame.addActionListener(newGameListener);
-		btnNewGame.setBackground(new Color(152, 224, 163));
+		//btnNewGame.setBackground(new Color(152, 224, 163));
+		btnNewGame.setBackground(Color.GREEN);
 		btnNewGame.setFont(font);
 		
 		gbc.gridx = 0;
@@ -101,7 +102,8 @@ public class Scoreboard extends JFrame {
 		// close button
 		CLoseBtnListener closeListener = new CLoseBtnListener();
 		btnClose.addActionListener(closeListener);
-		btnClose.setBackground(new Color(244, 181, 222));
+		//btnClose.setBackground(new Color(244, 181, 222));
+		btnClose.setBackground(Color.MAGENTA);
 		btnClose.setFont(font);
 		
 		gbc.gridx = 0;
@@ -205,7 +207,7 @@ public class Scoreboard extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) { //New Game
 			CloseFrame();
-			
+			setSudokuMain(oldSudoku);
 			// close old sudoku window
 			oldSudoku.CloseFrame();
 			
