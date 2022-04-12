@@ -31,6 +31,10 @@ public class Scoreboard extends JFrame {
 		JTable scoreboardTable_easy =new JTable(getScoreData("easy"), column); 
 		JTable scoreboardTable_medium =new JTable(getScoreData("medium"), column); 
 		JTable scoreboardTable_hard =new JTable(getScoreData("hard"), column); 
+		
+		JScrollPane scrollView_easy =new JScrollPane(scoreboardTable_easy);
+		JScrollPane scrollView_medium =new JScrollPane(scoreboardTable_medium);
+		JScrollPane scrollView_hard =new JScrollPane(scoreboardTable_hard);
 				
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -38,21 +42,20 @@ public class Scoreboard extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weighty = 0.5;
 		gbc.insets = new Insets(20, 20, 0, 20);
-		//cp.add(scoreboardTable, gbc);
 				
 		// tab pane
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		JPanel tab1 = new JPanel(new BorderLayout());
-		tab1.add(scoreboardTable_easy);
+		tab1.add(scrollView_easy);
 		tabbedPane.addTab("Easy", tab1);
 		
 		JPanel tab2 = new JPanel(new BorderLayout());
-		tab2.add(scoreboardTable_medium);
+		tab2.add(scrollView_medium);
 		tabbedPane.addTab("Medium", tab2);
 		
 		JPanel tab3 = new JPanel(new BorderLayout());
-		tab3.add(scoreboardTable_hard);
+		tab3.add(scrollView_hard);
 		tabbedPane.addTab("Hard", tab3);
 		
 		cp.add(tabbedPane, gbc);
