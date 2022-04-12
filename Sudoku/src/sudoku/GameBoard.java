@@ -170,7 +170,7 @@ public class GameBoard extends JPanel {
 			System.out.println(correctAnswer);
 			
 			cells[r][c].setText(String.valueOf(correctAnswer));
-			cells[r][c].status = CellStatus.CORRECT_GUESS;
+			cells[r][c].status = CellStatus.GIVEN_HINT;
 			cells[r][c].paint();
 	}
 	
