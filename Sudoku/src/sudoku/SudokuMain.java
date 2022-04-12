@@ -24,7 +24,7 @@ import sudoku.SoundEffect.Volume;
 /**
  * The main Sudoku program
  */
-public class SudokuMain extends JFrame implements LineListener {
+public class SudokuMain extends JFrame{
 	// private variables
 	GameBoard board = new GameBoard();
 	JButton btnNewGame = new JButton("New Game");
@@ -51,6 +51,8 @@ public class SudokuMain extends JFrame implements LineListener {
 		Container cp = this.getContentPane();
 		cp.setLayout(new GridBagLayout());
 		
+		cp.setBackground(new Color(27, 27, 33));
+		
 		SoundEffect.init();
 		SoundEffect.BG_MUSIC.playContinue();
 				
@@ -60,7 +62,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
-		gbc.insets = new Insets(20, 20, 0, 20);
+		gbc.insets = new Insets(20, 20, 20, 20);
 		cp.add(board, gbc);
 
 		Font font = new Font("Dialog", Font.BOLD, 20);
@@ -68,8 +70,9 @@ public class SudokuMain extends JFrame implements LineListener {
 		// hint button
 		HintBtnListener hintListener = new HintBtnListener();
 		btnHint.addActionListener(hintListener);
-		btnHint.setBackground(Color.GREEN);
+		btnHint.setBackground(new Color(246, 224, 163));
 		btnHint.setFont(font);
+		btnHint.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 				
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -78,15 +81,16 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		gbc.ipadx = 100;
-		gbc.ipady = 10;
+		gbc.ipady = 3;
 		gbc.insets = new Insets(10, 50, 0, 50);
 		cp.add(btnHint, gbc);
 		
 		// Add a button to the south to re-start the game 
 		NewGameBtnListener newGameListener = new NewGameBtnListener();
 		btnNewGame.addActionListener(newGameListener);
-		btnNewGame.setBackground(Color.GREEN);
+		btnNewGame.setBackground(new Color(152, 224, 163));
 		btnNewGame.setFont(font);
+		btnNewGame.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 				
 		gbc.gridx = 0;
 		gbc.gridy = 3;
@@ -95,14 +99,15 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		gbc.ipadx = 100;
-		gbc.ipady = 10;
+		gbc.ipady = 3;
 		gbc.insets = new Insets(10, 50, 0, 30);
 		cp.add(btnNewGame, gbc);
 		
 		ResetBtnListener resetListener = new ResetBtnListener();
 		btnReset.addActionListener(resetListener);
-		btnReset.setBackground(Color.CYAN);
+		btnReset.setBackground(new Color(203, 95, 77));
 		btnReset.setFont(font);
+		btnReset.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 		
 		gbc.gridx = 4;
 		gbc.gridy = 3;
@@ -111,14 +116,15 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
 		gbc.ipadx = 100;
-		gbc.ipady = 10;
+		gbc.ipady = 3;
 		gbc.insets = new Insets(10, 0, 0, 50);
 		cp.add(btnReset, gbc);
 		
 		ExitBtnListener exitListener = new ExitBtnListener();
 		btnExit.addActionListener(exitListener);
-		btnExit.setBackground(Color.MAGENTA);
+		btnExit.setBackground(new Color(244, 181, 222));
 		btnExit.setFont(font);
+		btnExit.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.WHITE));
 		
 		gbc.gridx = 0;
 		gbc.gridy = 4;
@@ -126,7 +132,7 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
-		gbc.ipady = 10;
+		gbc.ipady = 3;
 		gbc.insets = new Insets(10, 50, 10, 50);
 		cp.add(btnExit, gbc);
 		
@@ -136,8 +142,9 @@ public class SudokuMain extends JFrame implements LineListener {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 0.5;
 		gbc.weighty = 0.5;
-		gbc.ipady = 10;
-		gbc.insets = new Insets(10, 50, 0, 50);
+		gbc.ipady = 3;
+		gbc.insets = new Insets(20, 50, 0, 50);
+		tf.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Color.CYAN));
 		cp.add(tf,gbc);
 		
 		board.init();

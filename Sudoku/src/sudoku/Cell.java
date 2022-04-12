@@ -11,11 +11,11 @@ public class Cell extends JTextField {
 	// Name-constants for JTextField's colors and fonts
 	public static final Color BG_SHOWN = new Color(240, 240, 240); // RGB
 	public static final Color FG_SHOWN = Color.BLACK;
-	public static final Color FG_NOT_SHOWN = Color.GRAY;
-	public static final Color BG_NO_GUESS = Color.YELLOW;
+	public static final Color FG_NOT_SHOWN = new Color(46, 50, 55);
+	public static final Color BG_NO_GUESS = new Color(254, 255, 145);
 	public static final Color BG_CORRECT_GUESS = new Color(0, 216, 0);  // RGB
-	public static final Color BG_WRONG_GUESS = new Color(216, 0, 0);
-	public static final Color BG_GIVEN_HINT = Color.CYAN;
+	public static final Color BG_WRONG_GUESS = new Color(174, 55, 57);
+	public static final Color BG_GIVEN_HINT = new Color(125, 171, 210);
 	public static final Font FONT_NUMBERS = new Font("Monospaced", Font.BOLD, 24);
 
 	// All variables have package access
@@ -63,6 +63,7 @@ public class Cell extends JTextField {
 		}
 		else if (status == CellStatus.GIVEN_HINT) {
 			super.setEditable(false);
+			super.setForeground(FG_SHOWN);
 			super.setBackground(BG_GIVEN_HINT);
 		}
 	}

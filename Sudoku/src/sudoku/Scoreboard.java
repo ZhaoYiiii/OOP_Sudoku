@@ -84,7 +84,7 @@ public class Scoreboard extends JFrame {
 		// new game button
 		NewGameBtnListener newGameListener = new NewGameBtnListener();
 		btnNewGame.addActionListener(newGameListener);
-		btnNewGame.setBackground(Color.GREEN);
+		btnNewGame.setBackground(new Color(152, 224, 163));
 		btnNewGame.setFont(font);
 		
 		gbc.gridx = 0;
@@ -101,7 +101,7 @@ public class Scoreboard extends JFrame {
 		// close button
 		CLoseBtnListener closeListener = new CLoseBtnListener();
 		btnClose.addActionListener(closeListener);
-		btnClose.setBackground(Color.MAGENTA);
+		btnClose.setBackground(new Color(244, 181, 222));
 		btnClose.setFont(font);
 		
 		gbc.gridx = 0;
