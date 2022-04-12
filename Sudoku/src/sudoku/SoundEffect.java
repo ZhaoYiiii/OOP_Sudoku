@@ -14,7 +14,7 @@ import javax.sound.sampled.*;
  * 4. You can use the static variable SoundEffect.volume to mute the sound.
  */
 public enum SoundEffect {
-   BG_MUSIC("/audio/jazzyfrenchy.wav");      // bullet
+   BG_MUSIC("/audio/jazzcomedy.wav");      // bullet
    
    // Nested class for specifying volume
    public static enum Volume {
