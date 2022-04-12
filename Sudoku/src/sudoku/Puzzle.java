@@ -410,8 +410,8 @@ public class Puzzle {
 					int a = -1;
 					int b = -1;
 					do{
-					a = rand.nextInt(0,8);
-					b = rand.nextInt(0,8);
+					a = rand.nextInt(0,9);
+					b = rand.nextInt(0,9);
 					}
 					while(shown[a][b] == false);
 					shown[a][b]=false;

@@ -4,6 +4,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.io.PrintWriter; // Step 1
+import java.util.ArrayList;
+import java.util.Random;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
@@ -138,7 +140,38 @@ public class GameBoard extends JPanel {
 	}
 	
 	public void useHint() {
+		Random rand = new Random();
 		
+		ArrayList<int[]> emptyCells = new ArrayList<int[]>();
+		for (int row = 0; row < GRID_SIZE; ++row) {
+			for (int col = 0; col < GRID_SIZE; ++col) {
+				if (cells[row][col].isEditable() || cells[row][col].status == CellStatus.NO_GUESS || cells[row][col].status == CellStatus.WRONG_GUESS) {
+					emptyCells.add(new int []{row, col});
+				}
+			}
+		}
+		
+		// print test
+		for(int i=0;i<emptyCells.size();i++) {
+			System.out.print(emptyCells.get(i)[0]);
+			System.out.print(emptyCells.get(i)[1]);
+			System.out.println();
+		}
+		
+			int randomIndex = rand.nextInt(0, emptyCells.size());
+			int r = emptyCells.get(randomIndex)[0];
+			int c = emptyCells.get(randomIndex)[1];
+			
+			System.out.println(r);
+			System.out.println(c);
+			
+			int correctAnswer = puzzle.numbers[r][c];
+			
+			System.out.println(correctAnswer);
+			
+			cells[r][c].setText(String.valueOf(correctAnswer));
+			cells[r][c].status = CellStatus.CORRECT_GUESS;
+			cells[r][c].paint();
 	}
 	
 	public String getDifficulty() {
